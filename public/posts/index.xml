@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 默风博客</title>
+    <link>https://blog.mofeng.run/posts/</link>
+    <description>Recent content in Posts on 默风博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 06 Sep 2024 23:55:44 +0800</lastBuildDate><atom:link href="https://blog.mofeng.run/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>将 One-KVM 迁移到 Docker 平台</title>
+      <link>https://blog.mofeng.run/posts/kvmd_on_docker/</link>
+      <pubDate>Fri, 06 Sep 2024 23:55:44 +0800</pubDate>
+      
+      <guid>https://blog.mofeng.run/posts/kvmd_on_docker/</guid>
+      <description>&lt;p&gt;1234&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>博客重新开始</title>
+      <link>https://blog.mofeng.run/posts/restart_blog/</link>
+      <pubDate>Fri, 06 Sep 2024 00:00:00 +0800</pubDate>
+      
+      <guid>https://blog.mofeng.run/posts/restart_blog/</guid>
+      <description>&lt;p&gt;重新开始&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

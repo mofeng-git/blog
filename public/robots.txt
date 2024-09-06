@@ -1,0 +1,4 @@
+User-agent: *
+Allow: *
+
+Sitemap: https://blog.mofeng.run/sitemap.xml
