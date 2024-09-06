@@ -1,4 +1,4 @@
 User-agent: *
 Allow: *
 
-Sitemap: https://blog.mofeng.run/sitemap.xml
+Sitemap: http://localhost:1313/sitemap.xml

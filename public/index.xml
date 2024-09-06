@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>默风博客</title>
-    <link>https://blog.mofeng.run/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on 默风博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 07 Sep 2024 00:16:04 +0800</lastBuildDate><atom:link href="https://blog.mofeng.run/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 Sep 2024 00:16:04 +0800</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>将 One-KVM 迁移到 Docker 平台</title>
-      <link>https://blog.mofeng.run/posts/kvmd_on_docker/</link>
+      <link>http://localhost:1313/posts/kvmd_on_docker/</link>
       <pubDate>Fri, 06 Sep 2024 23:55:44 +0800</pubDate>
       
-      <guid>https://blog.mofeng.run/posts/kvmd_on_docker/</guid>
+      <guid>http://localhost:1313/posts/kvmd_on_docker/</guid>
       <description>&lt;p&gt;1234&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>博客重新开始</title>
-      <link>https://blog.mofeng.run/posts/restart_blog/</link>
+      <link>http://localhost:1313/posts/restart_blog/</link>
       <pubDate>Fri, 06 Sep 2024 00:00:00 +0800</pubDate>
       
-      <guid>https://blog.mofeng.run/posts/restart_blog/</guid>
+      <guid>http://localhost:1313/posts/restart_blog/</guid>
       <description>&lt;p&gt;重新开始&lt;/p&gt;
 </description>
     </item>
