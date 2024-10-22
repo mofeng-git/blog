@@ -23,7 +23,10 @@
       <pubDate>Fri, 06 Sep 2024 00:00:00 +0800</pubDate>
       
       <guid>http://localhost:1313/posts/restart_blog/</guid>
-      <description>&lt;p&gt;重新开始&lt;/p&gt;
+      <description>&lt;h3 id=&#34;说明&#34;&gt;说明 &lt;a href=&#34;#%e8%af%b4%e6%98%8e&#34; class=&#34;anchor&#34;&gt;🔗&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;博客非常久没有更新了，所以最近干脆重新使用 hugo 重新搭建一个。&lt;/p&gt;
+&lt;p&gt;默风博客最早在2020年3月14日建站，使用 Typecho 博客程序，大约是高一时期，当时对计算机科学非常感兴趣，所以尝试自己建站，从共享虚拟主机空间到云服务器。高中时期受限于学识和技术水平，虽然课外时间不多还是尝试了非常多的新东西，文章大多是各类网站的搭建记录。到了大学时期，设备更好时间更自由，但几乎没怎么更新博客，大概是表达欲的减弱吧（&lt;del&gt;其实是懒&lt;/del&gt;）。&lt;/p&gt;
+&lt;p&gt;这里放一张互联网档案馆的截图以作纪念。
+&lt;img src=&#34;http://localhost:1313/img/image24102201.png&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;
 </description>
     </item>
     
