@@ -12,6 +12,8 @@ categories = [
 
 ### 新建本地站点
 
+Hugo是由Go编写的快速现代静态网站生成器，旨在让网站创建变得有趣。
+
 官方有详细的安装教程 [https://gohugo.io/getting-started/quick-start](https://gohugo.io/getting-started/quick-start)，这里就不赘述了。
 
 ```bash
