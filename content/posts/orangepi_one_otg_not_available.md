@@ -1,5 +1,5 @@
 +++
-title = '香橙派 one OTG 切换方法'
+title = '香橙派 ONE OTG 切换方法'
 date = 2024-11-18T07:02:08Z
 draft = false
 tags = [
