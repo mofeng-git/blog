@@ -1,6 +1,6 @@
 baseURL: "https://blog.mofeng.run"
 title: 默风博客
-paginate: 5
+pagination.pagerSize: 5
 theme: PaperMod
 
 languageCode: zh-cn
