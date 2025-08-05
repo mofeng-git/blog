@@ -23,7 +23,7 @@ jobs:
           extended: true
 
       - name: Build 
-        run: hugo
+        run: git submodule update --init --recursive && hugo
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
