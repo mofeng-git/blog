@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on 默风博客</title>
+    <link>https://blog.mofeng.run/tags/blog/</link>
+    <description>Recent content in Blog on 默风博客</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 17 Nov 2024 14:16:07 +0000</lastBuildDate>
+    <atom:link href="https://blog.mofeng.run/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>回顾自己的博客历史</title>
+      <link>https://blog.mofeng.run/posts/my_blog_history/</link>
+      <pubDate>Sun, 17 Nov 2024 14:16:07 +0000</pubDate>
+      <guid>https://blog.mofeng.run/posts/my_blog_history/</guid>
+      <description>&lt;p&gt;正式博客建站的时候没有再使用意义不明的二级域名，而是在腾讯云以非常低的首年入手了 mofeng.xyz 这个域名。当时正处于口罩时期，教学采用线上网课的方式进行，这给了我接触网络合理的理由，于是日夜沉迷于此。下图是2020年4月28日的博客截图和百度网站统计。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://blog.mofeng.run/img/05_2020-04-28_DECD18E8.jpeg&#34; alt=&#34;05_2020-04-28_DECD18E8&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://blog.mofeng.run/img/03_2020-04-28_B5F69B11.png&#34; alt=&#34;03_2020-04-28_B5F69B11&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;当时发现新大陆、与网友交流的兴奋仍记忆清晰。对我影响比较大的是寒枫所在的凤栖社区，虽然我只是透明人窥屏的存在，但还是我口罩时代一段难忘的记忆。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://blog.mofeng.run/img/06_2020-04-28_C7C2E849.png&#34; alt=&#34;06_2020-04-28_C7C2E849&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://blog.mofeng.run/img/13_2020-03-31_3DB40746.jpeg&#34; alt=&#34;13_2020-03-31_3DB40746&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;疫情的影响慢慢减退之后，回到学校上学之后就回归学习日常生活，这段时期的中心就在学习上了。一直到现在，自己的博客都在维护，程序主题换了一个又一个，网站搬家迁移一次又一次，文章确实越来越少了。&lt;/p&gt;&#xA;&lt;p&gt;日后会在这个博客上多写一些文章，无关观众，作为自己网络表达和技术记录的一个小天地。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>使用 hugo 搭建博客</title>
+      <link>https://blog.mofeng.run/posts/use-hugo-build-blog/</link>
+      <pubDate>Tue, 22 Oct 2024 11:48:30 +0000</pubDate>
+      <guid>https://blog.mofeng.run/posts/use-hugo-build-blog/</guid>
+      <description>&lt;h3 id=&#34;新建本地站点&#34;&gt;新建本地站点&lt;/h3&gt;&#xA;&lt;p&gt;Hugo是由Go编写的快速现代静态网站生成器，旨在让网站创建变得有趣。&lt;/p&gt;&#xA;&lt;p&gt;官方有详细的安装教程 &lt;a href=&#34;https://gohugo.io/getting-started/quick-start&#34;&gt;https://gohugo.io/getting-started/quick-start&lt;/a&gt;，这里就不赘述了。&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Ubuntu/Debain 安装 hugo&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#如果仓库版本过旧可以到 Github 下载最新版本的 deb 包&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install  hugo&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#检查 hugo 版本&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo version&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#创建一个新站点&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo new site myblog&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#进入站点目录&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; myblog&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#创建一个新文章&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo new posts/my-first-post.md&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#启动 hugo 服务器，渲染草稿需要添加 --buildDrafts 参数&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo server&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#生成静态页面&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;部署到云服务器&#34;&gt;部署到云服务器&lt;/h3&gt;&#xA;&lt;p&gt;由于 Github Pages 在大陆访问速度较慢，所以这里选择部署到云服务器上。&#xA;这里使用 Github 中转代码，在云服务器上使用 Nginx 新建静态站点，并安装 Webhook 监听 Github 代码变动，自动更新渲染站点。&lt;/p&gt;&#xA;&lt;p&gt;这里需要在云服务上提前安装好 webhook 和 hugo，然后新建一个静态站点（这里我使用 1panel 面板操作）。&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install webhook hugo&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;webhook 配置文件实例：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>博客重新开始</title>
+      <link>https://blog.mofeng.run/posts/restart_blog/</link>
+      <pubDate>Fri, 06 Sep 2024 00:00:00 +0800</pubDate>
+      <guid>https://blog.mofeng.run/posts/restart_blog/</guid>
+      <description>&lt;h3 id=&#34;说明&#34;&gt;说明&lt;/h3&gt;&#xA;&lt;p&gt;博客非常久没有更新了，所以最近干脆重新使用 hugo 重新搭建一个。&lt;/p&gt;&#xA;&lt;p&gt;默风博客最早在2020年3月14日建站，使用 Typecho 博客程序，大约是高一时期，当时对计算机科学非常感兴趣，所以尝试自己建站，从共享虚拟主机空间到云服务器。高中时期受限于学识和技术水平，虽然课外时间不多还是尝试了非常多的新东西，文章大多是各类网站的搭建记录。到了大学时期，设备更好时间更自由，但几乎没怎么更新博客，大概是表达欲的减弱吧（&lt;del&gt;其实是懒&lt;/del&gt;）。&lt;/p&gt;&#xA;&lt;p&gt;这里放一张互联网档案馆的截图以作纪念。&#xA;&lt;img src=&#34;https://blog.mofeng.run/img/image24102201.png&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
