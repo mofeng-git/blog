@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>网站 on 默风博客</title>
+    <link>https://blog.mofeng.run/tags/%E7%BD%91%E7%AB%99/</link>
+    <description>Recent content in 网站 on 默风博客</description>
+    <generator>Hugo -- 0.148.2</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 06 Aug 2025 00:47:15 +0800</lastBuildDate>
+    <atom:link href="https://blog.mofeng.run/tags/%E7%BD%91%E7%AB%99/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Egdeone CDN 和 Pages 免费服务使用体验</title>
+      <link>https://blog.mofeng.run/posts/edgeone-cdn-pages-free-services-experience/</link>
+      <pubDate>Wed, 06 Aug 2025 00:47:15 +0800</pubDate>
+      <guid>https://blog.mofeng.run/posts/edgeone-cdn-pages-free-services-experience/</guid>
+      <description>&lt;h3 id=&#34;免费-cdn-服务&#34;&gt;免费 CDN 服务&lt;/h3&gt;
+&lt;p&gt;目前一个国际版账号最多可以领取三个免费 CDN 套餐（兑换码+测速活动），国内版账号目前只能领取一个免费 CDN 套餐（兑换码）。&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;图片&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/image-20250806005012000.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Egdeone 免费 CDN 套餐的优势是不限流量不限请求数、支持中国大陆节点加速、长期有效，缺点是不承诺 SLA、单线程有限速（512k 左右，不过对于普通网站，这个限速值也够用了）。&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;图片&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/image-20250806005101000.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;下图免费 CDN 套餐的概览面板。即使只是免费 CDN 套餐，大部分常规付费 CDN 该有的功能都是有的（如 websocket、自定义回源端口、自定义回源 host、刷新预热缓存，ssl证书自动化）。管理后台有很多的自定义选项，使用起来还是非常舒服的。&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;图片&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/image-20250806005135000.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;国际站和国内站都可以使用中国大陆加速，需要备案域名和实名认证，但对于中国大陆用户来说，国际站的实名认证不好处理，所以我认为还是国内站用的舒服一些。&lt;/p&gt;
+&lt;p&gt;全球可用区（不含中国大陆），无 IP 优选，延迟表现如下：&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;alt text&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/image-20250806005211000.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;全球可用区（含中国大陆），无 IP 优选，延迟表现如下：&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;alt text&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/image-20250806005234000.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;作为 CDN 服务，它和 cloudflare 一样也是可以进行 IP 优选的。官方的态度是，免费 CDN 套餐使用 IP 优选如果遭受攻击（IP 优选后会导致无法进行流量调度），影响其他用户体验，就可能会清退账号。如果是使用官方 cname 遭受攻击则不会有问题。这个要不要使用 IP 优选就看你个人的需求和选择了。&lt;/p&gt;
+&lt;h3 id=&#34;免费-pages-服务&#34;&gt;免费 Pages 服务&lt;/h3&gt;
+&lt;p&gt;Egdeone Pages 服务也是不限量使用的，类似于 Github Pages 服务，可以用来托管静态网站。&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;alt text&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/image-20250806005303000.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Egdeone Pages 服务对中国大陆用户不太友好，未备案域名加速区域设置为&amp;quot;全球可用区（不含中国大陆）&amp;ldquo;时，中国大陆无法访问。而且其域名解析似乎必须指定完全一致的 cname，不能套娃式加速（如 Egdeone CDN 回源到 Egdeone Pages）。功能也比较简单，没有访问统计流量统计等一类的统计和日志信息（不过大部分 Pages 服务就是这样的，也不算缺陷，只是我觉得有这些功能会更好）。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h3 id="免费-cdn-服务">免费 CDN 服务</h3>
+<p>目前一个国际版账号最多可以领取三个免费 CDN 套餐（兑换码+测速活动），国内版账号目前只能领取一个免费 CDN 套餐（兑换码）。</p>
+<p><img alt="图片" loading="lazy" src="/img/image-20250806005012000.png"></p>
+<p>Egdeone 免费 CDN 套餐的优势是不限流量不限请求数、支持中国大陆节点加速、长期有效，缺点是不承诺 SLA、单线程有限速（512k 左右，不过对于普通网站，这个限速值也够用了）。</p>
+<p><img alt="图片" loading="lazy" src="/img/image-20250806005101000.png"></p>
+<p>下图免费 CDN 套餐的概览面板。即使只是免费 CDN 套餐，大部分常规付费 CDN 该有的功能都是有的（如 websocket、自定义回源端口、自定义回源 host、刷新预热缓存，ssl证书自动化）。管理后台有很多的自定义选项，使用起来还是非常舒服的。</p>
+<p><img alt="图片" loading="lazy" src="/img/image-20250806005135000.png"></p>
+<p>国际站和国内站都可以使用中国大陆加速，需要备案域名和实名认证，但对于中国大陆用户来说，国际站的实名认证不好处理，所以我认为还是国内站用的舒服一些。</p>
+<p>全球可用区（不含中国大陆），无 IP 优选，延迟表现如下：</p>
+<p><img alt="alt text" loading="lazy" src="/img/image-20250806005211000.png"></p>
+<p>全球可用区（含中国大陆），无 IP 优选，延迟表现如下：</p>
+<p><img alt="alt text" loading="lazy" src="/img/image-20250806005234000.png"></p>
+<p>作为 CDN 服务，它和 cloudflare 一样也是可以进行 IP 优选的。官方的态度是，免费 CDN 套餐使用 IP 优选如果遭受攻击（IP 优选后会导致无法进行流量调度），影响其他用户体验，就可能会清退账号。如果是使用官方 cname 遭受攻击则不会有问题。这个要不要使用 IP 优选就看你个人的需求和选择了。</p>
+<h3 id="免费-pages-服务">免费 Pages 服务</h3>
+<p>Egdeone Pages 服务也是不限量使用的，类似于 Github Pages 服务，可以用来托管静态网站。</p>
+<p><img alt="alt text" loading="lazy" src="/img/image-20250806005303000.png"></p>
+<p>Egdeone Pages 服务对中国大陆用户不太友好，未备案域名加速区域设置为&quot;全球可用区（不含中国大陆）&ldquo;时，中国大陆无法访问。而且其域名解析似乎必须指定完全一致的 cname，不能套娃式加速（如 Egdeone CDN 回源到 Egdeone Pages）。功能也比较简单，没有访问统计流量统计等一类的统计和日志信息（不过大部分 Pages 服务就是这样的，也不算缺陷，只是我觉得有这些功能会更好）。</p>
+<p><img alt="alt text" loading="lazy" src="/img/image-20250806005331000.png"></p>
+<p>全球可用区（不含中国大陆），中国大陆访问返回都是401错误代码。</p>
+<p><img alt="alt text" loading="lazy" src="/img/image-20250806005355000.png"></p>
+<p>延迟如下（由于屏蔽了中国大陆访问，这个延迟再好也已经没有意义了）。</p>
+<p><img alt="alt text" loading="lazy" src="/img/image-20250806005413000.png"></p>
+<p>我之前有一个想法，把我的静态网站直接托管到 Egdeone Pages 上，通过 Egdeone CDN 回源加速，这样就能省掉一台云服务器，现在看来很麻烦，没法简单地实现这个目的。</p>
+<h3 id="总结">总结</h3>
+<p>对于面向中国大陆的网站，Egdeone CDN 免费套餐是非常值得一试的，无论是备案域名还是未备案域名，在没有 IP 优选的情况下都能获得一个不错的访问速度。而且不限流量不限请求数的免费套餐也能让站长放心地使用，不必担心突发的高额账单。</p>
+<p>至于 Egdeone Pages，如果你有备案域名，它是一个不错的静态网站托管服务。但如果是未备案域名，还需要中国大陆访问，那就完全不推荐了。</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>
