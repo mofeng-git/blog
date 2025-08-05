@@ -1,0 +1,129 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>使用 hugo 搭建博客 | 默风博客</title><meta name=keywords content="blog"><meta name=description content="新建本地站点
+Hugo是由Go编写的快速现代静态网站生成器，旨在让网站创建变得有趣。
+官方有详细的安装教程 https://gohugo.io/getting-started/quick-start，这里就不赘述了。
+#Ubuntu/Debain 安装 hugo
+#如果仓库版本过旧可以到 Github 下载最新版本的 deb 包
+sudo apt install  hugo
+
+#检查 hugo 版本
+hugo version
+
+#创建一个新站点
+hugo new site myblog
+
+#进入站点目录
+cd myblog
+
+#创建一个新文章
+hugo new posts/my-first-post.md
+
+#启动 hugo 服务器，渲染草稿需要添加 --buildDrafts 参数
+hugo server
+
+#生成静态页面
+hugo
+部署到云服务器
+由于 Github Pages 在大陆访问速度较慢，所以这里选择部署到云服务器上。
+这里使用 Github 中转代码，在云服务器上使用 Nginx 新建静态站点，并安装 Webhook 监听 Github 代码变动，自动更新渲染站点。
+这里需要在云服务上提前安装好 webhook 和 hugo，然后新建一个静态站点（这里我使用 1panel 面板操作）。
+sudo apt install webhook hugo
+webhook 配置文件实例："><meta name=author content="SilentWind"><link rel=canonical href=https://blog.mofeng.run/posts/use-hugo-build-blog/><link crossorigin=anonymous href=/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css integrity="sha256-j+ECM6cGvIfy4Is8+XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as=style><link rel=icon href=https://blog.mofeng.run/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://blog.mofeng.run/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://blog.mofeng.run/favicon-32x32.png><link rel=apple-touch-icon href=https://blog.mofeng.run/apple-touch-icon.png><link rel=mask-icon href=https://blog.mofeng.run/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://blog.mofeng.run/posts/use-hugo-build-blog/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://blog.mofeng.run/posts/use-hugo-build-blog/"><meta property="og:site_name" content="默风博客"><meta property="og:title" content="使用 hugo 搭建博客"><meta property="og:description" content="新建本地站点 Hugo是由Go编写的快速现代静态网站生成器，旨在让网站创建变得有趣。
+官方有详细的安装教程 https://gohugo.io/getting-started/quick-start，这里就不赘述了。
+#Ubuntu/Debain 安装 hugo #如果仓库版本过旧可以到 Github 下载最新版本的 deb 包 sudo apt install hugo #检查 hugo 版本 hugo version #创建一个新站点 hugo new site myblog #进入站点目录 cd myblog #创建一个新文章 hugo new posts/my-first-post.md #启动 hugo 服务器，渲染草稿需要添加 --buildDrafts 参数 hugo server #生成静态页面 hugo 部署到云服务器 由于 Github Pages 在大陆访问速度较慢，所以这里选择部署到云服务器上。 这里使用 Github 中转代码，在云服务器上使用 Nginx 新建静态站点，并安装 Webhook 监听 Github 代码变动，自动更新渲染站点。
+这里需要在云服务上提前安装好 webhook 和 hugo，然后新建一个静态站点（这里我使用 1panel 面板操作）。
+sudo apt install webhook hugo webhook 配置文件实例："><meta property="og:locale" content="zh-cn"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-10-22T11:48:30+00:00"><meta property="article:modified_time" content="2024-10-22T11:48:30+00:00"><meta property="article:tag" content="Blog"><meta name=twitter:card content="summary"><meta name=twitter:title content="使用 hugo 搭建博客"><meta name=twitter:description content="新建本地站点
+Hugo是由Go编写的快速现代静态网站生成器，旨在让网站创建变得有趣。
+官方有详细的安装教程 https://gohugo.io/getting-started/quick-start，这里就不赘述了。
+#Ubuntu/Debain 安装 hugo
+#如果仓库版本过旧可以到 Github 下载最新版本的 deb 包
+sudo apt install  hugo
+
+#检查 hugo 版本
+hugo version
+
+#创建一个新站点
+hugo new site myblog
+
+#进入站点目录
+cd myblog
+
+#创建一个新文章
+hugo new posts/my-first-post.md
+
+#启动 hugo 服务器，渲染草稿需要添加 --buildDrafts 参数
+hugo server
+
+#生成静态页面
+hugo
+部署到云服务器
+由于 Github Pages 在大陆访问速度较慢，所以这里选择部署到云服务器上。
+这里使用 Github 中转代码，在云服务器上使用 Nginx 新建静态站点，并安装 Webhook 监听 Github 代码变动，自动更新渲染站点。
+这里需要在云服务上提前安装好 webhook 和 hugo，然后新建一个静态站点（这里我使用 1panel 面板操作）。
+sudo apt install webhook hugo
+webhook 配置文件实例："><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://blog.mofeng.run/posts/"},{"@type":"ListItem","position":2,"name":"使用 hugo 搭建博客","item":"https://blog.mofeng.run/posts/use-hugo-build-blog/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"使用 hugo 搭建博客","name":"使用 hugo 搭建博客","description":"新建本地站点 Hugo是由Go编写的快速现代静态网站生成器，旨在让网站创建变得有趣。\n官方有详细的安装教程 https://gohugo.io/getting-started/quick-start，这里就不赘述了。\n#Ubuntu/Debain 安装 hugo #如果仓库版本过旧可以到 Github 下载最新版本的 deb 包 sudo apt install hugo #检查 hugo 版本 hugo version #创建一个新站点 hugo new site myblog #进入站点目录 cd myblog #创建一个新文章 hugo new posts/my-first-post.md #启动 hugo 服务器，渲染草稿需要添加 --buildDrafts 参数 hugo server #生成静态页面 hugo 部署到云服务器 由于 Github Pages 在大陆访问速度较慢，所以这里选择部署到云服务器上。 这里使用 Github 中转代码，在云服务器上使用 Nginx 新建静态站点，并安装 Webhook 监听 Github 代码变动，自动更新渲染站点。\n这里需要在云服务上提前安装好 webhook 和 hugo，然后新建一个静态站点（这里我使用 1panel 面板操作）。\nsudo apt install webhook hugo webhook 配置文件实例：\n","keywords":["blog"],"articleBody":"新建本地站点 Hugo是由Go编写的快速现代静态网站生成器，旨在让网站创建变得有趣。\n官方有详细的安装教程 https://gohugo.io/getting-started/quick-start，这里就不赘述了。\n#Ubuntu/Debain 安装 hugo #如果仓库版本过旧可以到 Github 下载最新版本的 deb 包 sudo apt install hugo #检查 hugo 版本 hugo version #创建一个新站点 hugo new site myblog #进入站点目录 cd myblog #创建一个新文章 hugo new posts/my-first-post.md #启动 hugo 服务器，渲染草稿需要添加 --buildDrafts 参数 hugo server #生成静态页面 hugo 部署到云服务器 由于 Github Pages 在大陆访问速度较慢，所以这里选择部署到云服务器上。 这里使用 Github 中转代码，在云服务器上使用 Nginx 新建静态站点，并安装 Webhook 监听 Github 代码变动，自动更新渲染站点。\n这里需要在云服务上提前安装好 webhook 和 hugo，然后新建一个静态站点（这里我使用 1panel 面板操作）。\nsudo apt install webhook hugo webhook 配置文件实例：\n[ { \"id\": \"deploy-blog\", \"execute-command\": \"/root/deploy-blog.sh\", \"response-message\": \"Executing deploy script\", \"trigger-rule\": { \"and\": [{ \"match\": { \"type\": \"payload-hash-sha1\", \"secret\": \"xxxxxxxxx\", \"parameter\": { \"source\": \"header\", \"name\": \"X-Hub-Signature\" } } }, { \"match\": { \"type\": \"value\", \"value\": \"refs/heads/main\", \"parameter\": { \"source\": \"payload\", \"name\": \"ref\" } } }] } } ] /root/deploy-blog.sh bash 脚本随便写一下就行了。\n#!/bin/bash WEBPATH=/your/blog/path cd $WEBPATH git pull hugo 再设置允许 webhook 开机自启，最后到 Github Webhooks 添加就完成了。当本地推送文章到 Github，Github Webhooks 会自动触发 webhook，然后云服务器 webhook 就会自动更新渲染站点。\nsudo systemctl enable webhook sudo systemctl start webhook ","wordCount":"147","inLanguage":"en","datePublished":"2024-10-22T11:48:30Z","dateModified":"2024-10-22T11:48:30Z","author":{"@type":"Person","name":"SilentWind"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.mofeng.run/posts/use-hugo-build-blog/"},"publisher":{"@type":"Organization","name":"默风博客","logo":{"@type":"ImageObject","url":"https://blog.mofeng.run/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://blog.mofeng.run/ accesskey=h title="默风博客 (Alt + H)"><img src=https://blog.mofeng.run/apple-touch-icon.png alt aria-label=logo height=35>默风博客</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://blog.mofeng.run/categories/ title=分类><span>分类</span></a></li><li><a href=https://blog.mofeng.run/tags/ title=标签><span>标签</span></a></li><li><a href=https://blog.mofeng.run/search title="搜索 (Alt + /)" accesskey=/><span>搜索</span></a></li><li><a href=https://blog.mofeng.run/about title=关于><span>关于</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://blog.mofeng.run/>Home</a>&nbsp;»&nbsp;<a href=https://blog.mofeng.run/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">使用 hugo 搭建博客</h1><div class=post-meta><span title='2024-10-22 11:48:30 +0000 UTC'>2024-10-22</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;147 words&nbsp;·&nbsp;SilentWind</div></header><div class=post-content><h3 id=新建本地站点>新建本地站点<a hidden class=anchor aria-hidden=true href=#新建本地站点>#</a></h3><p>Hugo是由Go编写的快速现代静态网站生成器，旨在让网站创建变得有趣。</p><p>官方有详细的安装教程 <a href=https://gohugo.io/getting-started/quick-start>https://gohugo.io/getting-started/quick-start</a>，这里就不赘述了。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1>#Ubuntu/Debain 安装 hugo</span>
+</span></span><span class=line><span class=cl><span class=c1>#如果仓库版本过旧可以到 Github 下载最新版本的 deb 包</span>
+</span></span><span class=line><span class=cl>sudo apt install  hugo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#检查 hugo 版本</span>
+</span></span><span class=line><span class=cl>hugo version
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#创建一个新站点</span>
+</span></span><span class=line><span class=cl>hugo new site myblog
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#进入站点目录</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> myblog
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#创建一个新文章</span>
+</span></span><span class=line><span class=cl>hugo new posts/my-first-post.md
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#启动 hugo 服务器，渲染草稿需要添加 --buildDrafts 参数</span>
+</span></span><span class=line><span class=cl>hugo server
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#生成静态页面</span>
+</span></span><span class=line><span class=cl>hugo
+</span></span></code></pre></div><h3 id=部署到云服务器>部署到云服务器<a hidden class=anchor aria-hidden=true href=#部署到云服务器>#</a></h3><p>由于 Github Pages 在大陆访问速度较慢，所以这里选择部署到云服务器上。
+这里使用 Github 中转代码，在云服务器上使用 Nginx 新建静态站点，并安装 Webhook 监听 Github 代码变动，自动更新渲染站点。</p><p>这里需要在云服务上提前安装好 webhook 和 hugo，然后新建一个静态站点（这里我使用 1panel 面板操作）。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt install webhook hugo
+</span></span></code></pre></div><p>webhook 配置文件实例：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;id&#34;</span><span class=p>:</span> <span class=s2>&#34;deploy-blog&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;execute-command&#34;</span><span class=p>:</span> <span class=s2>&#34;/root/deploy-blog.sh&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;response-message&#34;</span><span class=p>:</span> <span class=s2>&#34;Executing deploy script&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;trigger-rule&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;and&#34;</span><span class=p>:</span> <span class=p>[{</span>
+</span></span><span class=line><span class=cl>                <span class=nt>&#34;match&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;payload-hash-sha1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;secret&#34;</span><span class=p>:</span> <span class=s2>&#34;xxxxxxxxx&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;parameter&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                        <span class=nt>&#34;source&#34;</span><span class=p>:</span> <span class=s2>&#34;header&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                        <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;X-Hub-Signature&#34;</span>
+</span></span><span class=line><span class=cl>                    <span class=p>}</span>
+</span></span><span class=line><span class=cl>                <span class=p>}</span>
+</span></span><span class=line><span class=cl>            <span class=p>},</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=nt>&#34;match&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;value&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;value&#34;</span><span class=p>:</span> <span class=s2>&#34;refs/heads/main&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&#34;parameter&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                        <span class=nt>&#34;source&#34;</span><span class=p>:</span> <span class=s2>&#34;payload&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                        <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;ref&#34;</span>
+</span></span><span class=line><span class=cl>                    <span class=p>}</span>
+</span></span><span class=line><span class=cl>                <span class=p>}</span>
+</span></span><span class=line><span class=cl>            <span class=p>}]</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>]</span>
+</span></span></code></pre></div><p>/root/deploy-blog.sh bash 脚本随便写一下就行了。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=nv>WEBPATH</span><span class=o>=</span>/your/blog/path
+</span></span><span class=line><span class=cl><span class=nb>cd</span> <span class=nv>$WEBPATH</span>
+</span></span><span class=line><span class=cl>git pull
+</span></span><span class=line><span class=cl>hugo
+</span></span></code></pre></div><p>再设置允许 webhook 开机自启，最后到 Github Webhooks 添加就完成了。当本地推送文章到 Github，Github Webhooks 会自动触发 webhook，然后云服务器 webhook 就会自动更新渲染站点。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo systemctl <span class=nb>enable</span> webhook
+</span></span><span class=line><span class=cl>sudo systemctl start webhook
+</span></span></code></pre></div><p><img alt="alt text" loading=lazy src=/img/image2024102202.png></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://blog.mofeng.run/tags/blog/>Blog</a></li></ul><nav class=paginav><a class=prev href=https://blog.mofeng.run/posts/my_blog_history/><span class=title>« Prev</span><br><span>回顾自己的博客历史</span>
+</a><a class=next href=https://blog.mofeng.run/posts/kvmd_on_docker/><span class=title>Next »</span><br><span>将 One-KVM 迁移到 Docker 平台</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://blog.mofeng.run/>默风博客</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>var _hmt=_hmt||[];(function(){var e,t=document.createElement("script");t.src="https://hm.baidu.com/hm.js?fd5af83a20d36dbd27d70a8c7d288b8c",e=document.getElementsByTagName("script")[0],e.parentNode.insertBefore(t,e)})()</script><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

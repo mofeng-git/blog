@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>技术 on 默风博客</title>
     <link>https://blog.mofeng.run/categories/%E6%8A%80%E6%9C%AF/</link>
     <description>Recent content in 技术 on 默风博客</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- 0.148.2</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 12 Dec 2024 12:37:01 +0000</lastBuildDate>
     <atom:link href="https://blog.mofeng.run/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
@@ -13,21 +13,202 @@
       <link>https://blog.mofeng.run/posts/linux_swap_swappiness/</link>
       <pubDate>Thu, 12 Dec 2024 12:37:01 +0000</pubDate>
       <guid>https://blog.mofeng.run/posts/linux_swap_swappiness/</guid>
-      <description>&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;&#xA;&lt;p&gt;事情起因是我计划让一个优先级较低 Docker 容器应用使用部分 Swap 内存减小对系统的压力，重新创建容器时添加了 &lt;code&gt;-m 200M --memory-swap 500M&lt;/code&gt; 参数，结果容器应用服务无法完全启动，&lt;code&gt;fre -m&lt;/code&gt; 查看发现 Swap 内存空间占用也没有明显增加，查询资料才知道使用 Swap 内存不是创建挂载 Swap 分区就足够了的。&lt;/p&gt;&#xA;&lt;h3 id=&#34;正文&#34;&gt;正文&lt;/h3&gt;&#xA;&lt;p&gt;新建挂载完 Swap 分区之后还需要设置 swappiness 参数才能更好的发挥作用。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;swappiness 的值的大小对如何使用swap分区是有着很大的联系的。先前，人们建议把 vm.swapiness 设置为0，它意味着“除非发生内存益处，否则不要进行内存交换”。直到Linux内核 3.5-rcl 版本发布，这个值的意义才发生了变化。这个变化被一直到其他的发行版本上，包括 RedHat 企业版内核 2.6.32-303。在发生变化之后，0意味着“在任何情况下都不要发生交换”。所以现在建议把这个值设置为1。swappiness＝100 的时候表示积极的使用 swap 分区，并且把内存上的数据及时的搬运到 swap 空间里面。&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#查看 swappiness 参数&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /proc/sys/vm/swappiness&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#临时修改&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl vm.swappiness&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;60&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#永久修改&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;vm.swappiness=60&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /etc/sysctl.conf&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看系统 swappiness 参数值，返回值为0，修改此参数后 Swap 内存占用明显增加，容器应用服务也完全启动了。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;参考文章：&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/yinzhengjie/p/9994207.html&#34;&gt;https://www.cnblogs.com/yinzhengjie/p/9994207.html&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
+&lt;p&gt;事情起因是我计划让一个优先级较低 Docker 容器应用使用部分 Swap 内存减小对系统的压力，重新创建容器时添加了 &lt;code&gt;-m 200M --memory-swap 500M&lt;/code&gt; 参数，结果容器应用服务无法完全启动，&lt;code&gt;fre -m&lt;/code&gt; 查看发现 Swap 内存空间占用也没有明显增加，查询资料才知道使用 Swap 内存不是创建挂载 Swap 分区就足够了的。&lt;/p&gt;
+&lt;h3 id=&#34;正文&#34;&gt;正文&lt;/h3&gt;
+&lt;p&gt;新建挂载完 Swap 分区之后还需要设置 swappiness 参数才能更好的发挥作用。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;swappiness 的值的大小对如何使用swap分区是有着很大的联系的。先前，人们建议把 vm.swapiness 设置为0，它意味着“除非发生内存益处，否则不要进行内存交换”。直到Linux内核 3.5-rcl 版本发布，这个值的意义才发生了变化。这个变化被一直到其他的发行版本上，包括 RedHat 企业版内核 2.6.32-303。在发生变化之后，0意味着“在任何情况下都不要发生交换”。所以现在建议把这个值设置为1。swappiness＝100 的时候表示积极的使用 swap 分区，并且把内存上的数据及时的搬运到 swap 空间里面。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#查看 swappiness 参数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /proc/sys/vm/swappiness
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#临时修改&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl vm.swappiness&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;60&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#永久修改&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;vm.swappiness=60&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /etc/sysctl.conf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看系统 swappiness 参数值，返回值为0，修改此参数后 Swap 内存占用明显增加，容器应用服务也完全启动了。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考文章：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/yinzhengjie/p/9994207.html&#34;&gt;https://www.cnblogs.com/yinzhengjie/p/9994207.html&lt;/a&gt;&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h3 id="前言">前言</h3>
+<p>事情起因是我计划让一个优先级较低 Docker 容器应用使用部分 Swap 内存减小对系统的压力，重新创建容器时添加了 <code>-m 200M --memory-swap 500M</code> 参数，结果容器应用服务无法完全启动，<code>fre -m</code> 查看发现 Swap 内存空间占用也没有明显增加，查询资料才知道使用 Swap 内存不是创建挂载 Swap 分区就足够了的。</p>
+<h3 id="正文">正文</h3>
+<p>新建挂载完 Swap 分区之后还需要设置 swappiness 参数才能更好的发挥作用。</p>
+<blockquote>
+<p>swappiness 的值的大小对如何使用swap分区是有着很大的联系的。先前，人们建议把 vm.swapiness 设置为0，它意味着“除非发生内存益处，否则不要进行内存交换”。直到Linux内核 3.5-rcl 版本发布，这个值的意义才发生了变化。这个变化被一直到其他的发行版本上，包括 RedHat 企业版内核 2.6.32-303。在发生变化之后，0意味着“在任何情况下都不要发生交换”。所以现在建议把这个值设置为1。swappiness＝100 的时候表示积极的使用 swap 分区，并且把内存上的数据及时的搬运到 swap 空间里面。</p></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#查看 swappiness 参数</span>
+</span></span><span class="line"><span class="cl">cat /proc/sys/vm/swappiness
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#临时修改</span>
+</span></span><span class="line"><span class="cl">sysctl vm.swappiness<span class="o">=</span><span class="m">60</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#永久修改</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;vm.swappiness=60&#34;</span> &gt;&gt; /etc/sysctl.conf
+</span></span></code></pre></div><p>查看系统 swappiness 参数值，返回值为0，修改此参数后 Swap 内存占用明显增加，容器应用服务也完全启动了。</p>
+<p><strong>参考文章：</strong></p>
+<p><a href="https://www.cnblogs.com/yinzhengjie/p/9994207.html">https://www.cnblogs.com/yinzhengjie/p/9994207.html</a></p>
+]]></content:encoded>
     </item>
     <item>
       <title>香橙派 ONE OTG 切换方法</title>
       <link>https://blog.mofeng.run/posts/orangepi_one_otg_not_available/</link>
       <pubDate>Mon, 18 Nov 2024 07:02:08 +0000</pubDate>
       <guid>https://blog.mofeng.run/posts/orangepi_one_otg_not_available/</guid>
-      <description>&lt;p&gt;全志 CPU OTG 模式切换的方法和晶晨、 瑞芯微不同，我一次接触这块开发板时产生了误解，现将切换方法记录如下。此方法适用于香橙派 ONE 和 香橙派 ZERO 等使用 h2+/h3 CPU 的开发板。&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#我遇到的两种情况&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#通过 echo 写入数字（0，1，2，不同数字代表不同模式）&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &amp;gt; /sys/bus/platform/devices/sunxi_usb_udc/otg_role&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#直接 echo 写入 otg 模式&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; peripheral &amp;gt; /sys/devices/platform/soc/1c19000.usb/musb-hdrc.2.auto/mode&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;del&gt;最近入手了一块香橙派 one，一系列测试后发现官方的高 Linux 系统中无法使用 OTG，没找到 OTG 与 Docker 共存的办法，非常可惜。&lt;/del&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://blog.mofeng.run/img/orange-pi-one-banner-img-1731912755718-2.png&#34; alt=&#34;orange-pi-one-banner-img&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;del&gt;因为官方产品介绍上写明了开发板有一个 USB OTG 端口，测试前还是信心满满的。然而使用手册上 Linux 系统使用说明一节却没找到关于 OTG 的使用说明，这时候我产生了一些疑惑，心悬了起来。&lt;/del&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://blog.mofeng.run/img/image-20241118145156089.png&#34; alt=&#34;image-20241118145156089&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;del&gt;在自己安装不同系统测试后，悬着的心终于死了。&lt;/del&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;del&gt;测试结果如下：&lt;/del&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;del&gt;官方 5.4.65 内核和 Armbian 社区 6.6.44 内核无法使用 OTG，无法控制 USB 端口模式&lt;/del&gt;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;del&gt;官方 3.4.113 内核可以使用 OTG，但无法安装 Docker&lt;/del&gt;&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#官方 3.4.113 内核使能 OTG&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &amp;gt; /sys/bus/platform/devices/sunxi_usb_udc/otg_role&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://blog.mofeng.run/img/image-20241118142509993.png&#34; alt=&#34;image-20241118142509993&#34;&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;全志 CPU OTG 模式切换的方法和晶晨、 瑞芯微不同，我一次接触这块开发板时产生了误解，现将切换方法记录如下。此方法适用于香橙派 ONE 和 香橙派 ZERO 等使用 h2+/h3 CPU 的开发板。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#我遇到的两种情况&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#通过 echo 写入数字（0，1，2，不同数字代表不同模式）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt;  &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &amp;gt; /sys/bus/platform/devices/sunxi_usb_udc/otg_role
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#直接 echo 写入 otg 模式&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; peripheral &amp;gt; /sys/devices/platform/soc/1c19000.usb/musb-hdrc.2.auto/mode
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;del&gt;最近入手了一块香橙派 one，一系列测试后发现官方的高 Linux 系统中无法使用 OTG，没找到 OTG 与 Docker 共存的办法，非常可惜。&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;orange-pi-one-banner-img&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/orange-pi-one-banner-img-1731912755718-2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;因为官方产品介绍上写明了开发板有一个 USB OTG 端口，测试前还是信心满满的。然而使用手册上 Linux 系统使用说明一节却没找到关于 OTG 的使用说明，这时候我产生了一些疑惑，心悬了起来。&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;image-20241118145156089&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/image-20241118145156089.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;在自己安装不同系统测试后，悬着的心终于死了。&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;测试结果如下：&lt;/del&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;del&gt;官方 5.4.65 内核和 Armbian 社区 6.6.44 内核无法使用 OTG，无法控制 USB 端口模式&lt;/del&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;del&gt;官方 3.4.113 内核可以使用 OTG，但无法安装 Docker&lt;/del&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#官方 3.4.113 内核使能 OTG&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &amp;gt; /sys/bus/platform/devices/sunxi_usb_udc/otg_role
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt=&#34;image-20241118142509993&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/image-20241118142509993.png&#34;&gt;&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>全志 CPU OTG 模式切换的方法和晶晨、 瑞芯微不同，我一次接触这块开发板时产生了误解，现将切换方法记录如下。此方法适用于香橙派 ONE 和 香橙派 ZERO 等使用 h2+/h3 CPU 的开发板。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#我遇到的两种情况</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#通过 echo 写入数字（0，1，2，不同数字代表不同模式）</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span>  <span class="m">0</span> &gt; /sys/bus/platform/devices/sunxi_usb_udc/otg_role
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#直接 echo 写入 otg 模式</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> peripheral &gt; /sys/devices/platform/soc/1c19000.usb/musb-hdrc.2.auto/mode
+</span></span></code></pre></div><p><del>最近入手了一块香橙派 one，一系列测试后发现官方的高 Linux 系统中无法使用 OTG，没找到 OTG 与 Docker 共存的办法，非常可惜。</del></p>
+<p><img alt="orange-pi-one-banner-img" loading="lazy" src="/img/orange-pi-one-banner-img-1731912755718-2.png"></p>
+<p><del>因为官方产品介绍上写明了开发板有一个 USB OTG 端口，测试前还是信心满满的。然而使用手册上 Linux 系统使用说明一节却没找到关于 OTG 的使用说明，这时候我产生了一些疑惑，心悬了起来。</del></p>
+<p><img alt="image-20241118145156089" loading="lazy" src="/img/image-20241118145156089.png"></p>
+<p><del>在自己安装不同系统测试后，悬着的心终于死了。</del></p>
+<p><del>测试结果如下：</del></p>
+<ul>
+<li>
+<p><del>官方 5.4.65 内核和 Armbian 社区 6.6.44 内核无法使用 OTG，无法控制 USB 端口模式</del></p>
+</li>
+<li>
+<p><del>官方 3.4.113 内核可以使用 OTG，但无法安装 Docker</del></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#官方 3.4.113 内核使能 OTG</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="m">2</span> &gt; /sys/bus/platform/devices/sunxi_usb_udc/otg_role
+</span></span></code></pre></div></li>
+</ul>
+<p><img alt="image-20241118142509993" loading="lazy" src="/img/image-20241118142509993.png"></p>
+]]></content:encoded>
     </item>
     <item>
       <title>使用 hugo 搭建博客</title>
       <link>https://blog.mofeng.run/posts/use-hugo-build-blog/</link>
       <pubDate>Tue, 22 Oct 2024 11:48:30 +0000</pubDate>
       <guid>https://blog.mofeng.run/posts/use-hugo-build-blog/</guid>
-      <description>&lt;h3 id=&#34;新建本地站点&#34;&gt;新建本地站点&lt;/h3&gt;&#xA;&lt;p&gt;Hugo是由Go编写的快速现代静态网站生成器，旨在让网站创建变得有趣。&lt;/p&gt;&#xA;&lt;p&gt;官方有详细的安装教程 &lt;a href=&#34;https://gohugo.io/getting-started/quick-start&#34;&gt;https://gohugo.io/getting-started/quick-start&lt;/a&gt;，这里就不赘述了。&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Ubuntu/Debain 安装 hugo&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#如果仓库版本过旧可以到 Github 下载最新版本的 deb 包&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install  hugo&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#检查 hugo 版本&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo version&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#创建一个新站点&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo new site myblog&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#进入站点目录&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; myblog&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#创建一个新文章&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo new posts/my-first-post.md&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#启动 hugo 服务器，渲染草稿需要添加 --buildDrafts 参数&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo server&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#生成静态页面&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;部署到云服务器&#34;&gt;部署到云服务器&lt;/h3&gt;&#xA;&lt;p&gt;由于 Github Pages 在大陆访问速度较慢，所以这里选择部署到云服务器上。&#xA;这里使用 Github 中转代码，在云服务器上使用 Nginx 新建静态站点，并安装 Webhook 监听 Github 代码变动，自动更新渲染站点。&lt;/p&gt;&#xA;&lt;p&gt;这里需要在云服务上提前安装好 webhook 和 hugo，然后新建一个静态站点（这里我使用 1panel 面板操作）。&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install webhook hugo&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;webhook 配置文件实例：&lt;/p&gt;</description>
+      <description>&lt;h3 id=&#34;新建本地站点&#34;&gt;新建本地站点&lt;/h3&gt;
+&lt;p&gt;Hugo是由Go编写的快速现代静态网站生成器，旨在让网站创建变得有趣。&lt;/p&gt;
+&lt;p&gt;官方有详细的安装教程 &lt;a href=&#34;https://gohugo.io/getting-started/quick-start&#34;&gt;https://gohugo.io/getting-started/quick-start&lt;/a&gt;，这里就不赘述了。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Ubuntu/Debain 安装 hugo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#如果仓库版本过旧可以到 Github 下载最新版本的 deb 包&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install  hugo
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#检查 hugo 版本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo version
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#创建一个新站点&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo new site myblog
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#进入站点目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; myblog
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#创建一个新文章&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo new posts/my-first-post.md
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#启动 hugo 服务器，渲染草稿需要添加 --buildDrafts 参数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo server
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#生成静态页面&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;部署到云服务器&#34;&gt;部署到云服务器&lt;/h3&gt;
+&lt;p&gt;由于 Github Pages 在大陆访问速度较慢，所以这里选择部署到云服务器上。
+这里使用 Github 中转代码，在云服务器上使用 Nginx 新建静态站点，并安装 Webhook 监听 Github 代码变动，自动更新渲染站点。&lt;/p&gt;
+&lt;p&gt;这里需要在云服务上提前安装好 webhook 和 hugo，然后新建一个静态站点（这里我使用 1panel 面板操作）。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install webhook hugo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;webhook 配置文件实例：&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h3 id="新建本地站点">新建本地站点</h3>
+<p>Hugo是由Go编写的快速现代静态网站生成器，旨在让网站创建变得有趣。</p>
+<p>官方有详细的安装教程 <a href="https://gohugo.io/getting-started/quick-start">https://gohugo.io/getting-started/quick-start</a>，这里就不赘述了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#Ubuntu/Debain 安装 hugo</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#如果仓库版本过旧可以到 Github 下载最新版本的 deb 包</span>
+</span></span><span class="line"><span class="cl">sudo apt install  hugo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#检查 hugo 版本</span>
+</span></span><span class="line"><span class="cl">hugo version
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#创建一个新站点</span>
+</span></span><span class="line"><span class="cl">hugo new site myblog
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#进入站点目录</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> myblog
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#创建一个新文章</span>
+</span></span><span class="line"><span class="cl">hugo new posts/my-first-post.md
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#启动 hugo 服务器，渲染草稿需要添加 --buildDrafts 参数</span>
+</span></span><span class="line"><span class="cl">hugo server
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#生成静态页面</span>
+</span></span><span class="line"><span class="cl">hugo
+</span></span></code></pre></div><h3 id="部署到云服务器">部署到云服务器</h3>
+<p>由于 Github Pages 在大陆访问速度较慢，所以这里选择部署到云服务器上。
+这里使用 Github 中转代码，在云服务器上使用 Nginx 新建静态站点，并安装 Webhook 监听 Github 代码变动，自动更新渲染站点。</p>
+<p>这里需要在云服务上提前安装好 webhook 和 hugo，然后新建一个静态站点（这里我使用 1panel 面板操作）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install webhook hugo
+</span></span></code></pre></div><p>webhook 配置文件实例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;deploy-blog&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;execute-command&#34;</span><span class="p">:</span> <span class="s2">&#34;/root/deploy-blog.sh&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;response-message&#34;</span><span class="p">:</span> <span class="s2">&#34;Executing deploy script&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;trigger-rule&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;and&#34;</span><span class="p">:</span> <span class="p">[{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;payload-hash-sha1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;secret&#34;</span><span class="p">:</span> <span class="s2">&#34;xxxxxxxxx&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;parameter&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="s2">&#34;header&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;X-Hub-Signature&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;match&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;value&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;refs/heads/main&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;parameter&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="s2">&#34;payload&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;ref&#34;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></div><p>/root/deploy-blog.sh bash 脚本随便写一下就行了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">WEBPATH</span><span class="o">=</span>/your/blog/path
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> <span class="nv">$WEBPATH</span>
+</span></span><span class="line"><span class="cl">git pull
+</span></span><span class="line"><span class="cl">hugo
+</span></span></code></pre></div><p>再设置允许 webhook 开机自启，最后到 Github Webhooks 添加就完成了。当本地推送文章到 Github，Github Webhooks 会自动触发 webhook，然后云服务器 webhook 就会自动更新渲染站点。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> webhook
+</span></span><span class="line"><span class="cl">sudo systemctl start webhook
+</span></span></code></pre></div><p><img alt="alt text" loading="lazy" src="/img/image2024102202.png"></p>
+]]></content:encoded>
     </item>
     <item>
       <title>将 One-KVM 迁移到 Docker 平台</title>
@@ -35,6 +216,8 @@
       <pubDate>Fri, 06 Sep 2024 23:55:44 +0800</pubDate>
       <guid>https://blog.mofeng.run/posts/kvmd_on_docker/</guid>
       <description>&lt;p&gt;无内容&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>无内容</p>
+]]></content:encoded>
     </item>
   </channel>
 </rss>
