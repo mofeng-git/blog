@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Swap on 默风博客</title>
     <link>https://blog.mofeng.run/tags/swap/</link>
     <description>Recent content in Swap on 默风博客</description>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 12 Dec 2024 12:37:01 +0000</lastBuildDate>
     <atom:link href="https://blog.mofeng.run/tags/swap/index.xml" rel="self" type="application/rss+xml" />
@@ -13,41 +13,7 @@
       <link>https://blog.mofeng.run/posts/linux_swap_swappiness/</link>
       <pubDate>Thu, 12 Dec 2024 12:37:01 +0000</pubDate>
       <guid>https://blog.mofeng.run/posts/linux_swap_swappiness/</guid>
-      <description>&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
-&lt;p&gt;事情起因是我计划让一个优先级较低 Docker 容器应用使用部分 Swap 内存减小对系统的压力，重新创建容器时添加了 &lt;code&gt;-m 200M --memory-swap 500M&lt;/code&gt; 参数，结果容器应用服务无法完全启动，&lt;code&gt;fre -m&lt;/code&gt; 查看发现 Swap 内存空间占用也没有明显增加，查询资料才知道使用 Swap 内存不是创建挂载 Swap 分区就足够了的。&lt;/p&gt;
-&lt;h3 id=&#34;正文&#34;&gt;正文&lt;/h3&gt;
-&lt;p&gt;新建挂载完 Swap 分区之后还需要设置 swappiness 参数才能更好的发挥作用。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;swappiness 的值的大小对如何使用swap分区是有着很大的联系的。先前，人们建议把 vm.swapiness 设置为0，它意味着“除非发生内存益处，否则不要进行内存交换”。直到Linux内核 3.5-rcl 版本发布，这个值的意义才发生了变化。这个变化被一直到其他的发行版本上，包括 RedHat 企业版内核 2.6.32-303。在发生变化之后，0意味着“在任何情况下都不要发生交换”。所以现在建议把这个值设置为1。swappiness＝100 的时候表示积极的使用 swap 分区，并且把内存上的数据及时的搬运到 swap 空间里面。&lt;/p&gt;&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#查看 swappiness 参数&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /proc/sys/vm/swappiness
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#临时修改&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl vm.swappiness&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;60&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#永久修改&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;vm.swappiness=60&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /etc/sysctl.conf
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看系统 swappiness 参数值，返回值为0，修改此参数后 Swap 内存占用明显增加，容器应用服务也完全启动了。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;参考文章：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/yinzhengjie/p/9994207.html&#34;&gt;https://www.cnblogs.com/yinzhengjie/p/9994207.html&lt;/a&gt;&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<h3 id="前言">前言</h3>
-<p>事情起因是我计划让一个优先级较低 Docker 容器应用使用部分 Swap 内存减小对系统的压力，重新创建容器时添加了 <code>-m 200M --memory-swap 500M</code> 参数，结果容器应用服务无法完全启动，<code>fre -m</code> 查看发现 Swap 内存空间占用也没有明显增加，查询资料才知道使用 Swap 内存不是创建挂载 Swap 分区就足够了的。</p>
-<h3 id="正文">正文</h3>
-<p>新建挂载完 Swap 分区之后还需要设置 swappiness 参数才能更好的发挥作用。</p>
-<blockquote>
-<p>swappiness 的值的大小对如何使用swap分区是有着很大的联系的。先前，人们建议把 vm.swapiness 设置为0，它意味着“除非发生内存益处，否则不要进行内存交换”。直到Linux内核 3.5-rcl 版本发布，这个值的意义才发生了变化。这个变化被一直到其他的发行版本上，包括 RedHat 企业版内核 2.6.32-303。在发生变化之后，0意味着“在任何情况下都不要发生交换”。所以现在建议把这个值设置为1。swappiness＝100 的时候表示积极的使用 swap 分区，并且把内存上的数据及时的搬运到 swap 空间里面。</p></blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#查看 swappiness 参数</span>
-</span></span><span class="line"><span class="cl">cat /proc/sys/vm/swappiness
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">#临时修改</span>
-</span></span><span class="line"><span class="cl">sysctl vm.swappiness<span class="o">=</span><span class="m">60</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">#永久修改</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;vm.swappiness=60&#34;</span> &gt;&gt; /etc/sysctl.conf
-</span></span></code></pre></div><p>查看系统 swappiness 参数值，返回值为0，修改此参数后 Swap 内存占用明显增加，容器应用服务也完全启动了。</p>
-<p><strong>参考文章：</strong></p>
-<p><a href="https://www.cnblogs.com/yinzhengjie/p/9994207.html">https://www.cnblogs.com/yinzhengjie/p/9994207.html</a></p>
-]]></content:encoded>
+      <description>&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;&#xA;&lt;p&gt;事情起因是我计划让一个优先级较低 Docker 容器应用使用部分 Swap 内存减小对系统的压力，重新创建容器时添加了 &lt;code&gt;-m 200M --memory-swap 500M&lt;/code&gt; 参数，结果容器应用服务无法完全启动，&lt;code&gt;fre -m&lt;/code&gt; 查看发现 Swap 内存空间占用也没有明显增加，查询资料才知道使用 Swap 内存不是创建挂载 Swap 分区就足够了的。&lt;/p&gt;&#xA;&lt;h3 id=&#34;正文&#34;&gt;正文&lt;/h3&gt;&#xA;&lt;p&gt;新建挂载完 Swap 分区之后还需要设置 swappiness 参数才能更好的发挥作用。&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;swappiness 的值的大小对如何使用swap分区是有着很大的联系的。先前，人们建议把 vm.swapiness 设置为0，它意味着“除非发生内存益处，否则不要进行内存交换”。直到Linux内核 3.5-rcl 版本发布，这个值的意义才发生了变化。这个变化被一直到其他的发行版本上，包括 RedHat 企业版内核 2.6.32-303。在发生变化之后，0意味着“在任何情况下都不要发生交换”。所以现在建议把这个值设置为1。swappiness＝100 的时候表示积极的使用 swap 分区，并且把内存上的数据及时的搬运到 swap 空间里面。&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#查看 swappiness 参数&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /proc/sys/vm/swappiness&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#临时修改&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl vm.swappiness&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;60&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#永久修改&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;vm.swappiness=60&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /etc/sysctl.conf&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看系统 swappiness 参数值，返回值为0，修改此参数后 Swap 内存占用明显增加，容器应用服务也完全启动了。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;参考文章：&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/yinzhengjie/p/9994207.html&#34;&gt;https://www.cnblogs.com/yinzhengjie/p/9994207.html&lt;/a&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

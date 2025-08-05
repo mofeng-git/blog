@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>日常 on 默风博客</title>
     <link>https://blog.mofeng.run/categories/%E6%97%A5%E5%B8%B8/</link>
     <description>Recent content in 日常 on 默风博客</description>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 12 Dec 2024 12:30:40 +0000</lastBuildDate>
     <atom:link href="https://blog.mofeng.run/categories/%E6%97%A5%E5%B8%B8/index.xml" rel="self" type="application/rss+xml" />
@@ -13,268 +13,35 @@
       <link>https://blog.mofeng.run/posts/fedora_install_remotecontorl_software/</link>
       <pubDate>Thu, 12 Dec 2024 12:30:40 +0000</pubDate>
       <guid>https://blog.mofeng.run/posts/fedora_install_remotecontorl_software/</guid>
-      <description>&lt;p&gt;虽然又很多开源远程控制软件（如 RustDesk），但是在服务业你无法强迫其他用户和你使用同样的软件，最终还是用户用什么你用什么。所以这篇文章记录一下在 Ferora 41 系统上向日葵远程控制和 ToDesk 的安装方法。安装&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;ToDesk&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;官网可以直接下载到 Linux 版本的安装包。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo yum install libappindicator-gtk3
-sudo yum install ./todesk-v4.7.2.0-x86_64.rpm
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img alt=&#34;image-20241128162806739&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/image-20241128162806739.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;向日葵远程控制&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;官网只能下载到 Centos 版本的安装包，并不兼容 Fedora，需要一些额外的操作才可以正常使用。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;强制安装&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;首先到官网下载到Centos 版本的安装包，然后强制安装 rpm 安装包。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;rpm -ivh --force --no-deps 
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;修改脚本&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;需要手动为 /usr/local/sunlogin/rpminstall.sh 文件和 /usr/local/sunlogin/scripts/start.sh 文件中共三处对 os_name 的判断加上 fedora，即 &lt;code&gt;if [ $os_name == &#39;centos&#39; ] || [ &amp;quot;$(echo $os_name |grep redhat)&amp;quot; != &amp;quot;&amp;quot; ]&lt;/code&gt; 替换为 &lt;code&gt;if [ $os_name == &#39;centos&#39; ] || [ &amp;quot;$os_name&amp;quot; == &amp;quot;fedora&amp;quot; ] || [ &amp;quot;$(echo $os_name |grep redhat)&amp;quot; != &amp;quot;&amp;quot; ]&lt;/code&gt;。&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<p>虽然又很多开源远程控制软件（如 RustDesk），但是在服务业你无法强迫其他用户和你使用同样的软件，最终还是用户用什么你用什么。所以这篇文章记录一下在 Ferora 41 系统上向日葵远程控制和 ToDesk 的安装方法。安装</p>
-<p><strong>ToDesk</strong></p>
-<p>官网可以直接下载到 Linux 版本的安装包。</p>
-<pre tabindex="0"><code>sudo yum install libappindicator-gtk3
-sudo yum install ./todesk-v4.7.2.0-x86_64.rpm
-</code></pre><p><img alt="image-20241128162806739" loading="lazy" src="/img/image-20241128162806739.png"></p>
-<p><strong>向日葵远程控制</strong></p>
-<p>官网只能下载到 Centos 版本的安装包，并不兼容 Fedora，需要一些额外的操作才可以正常使用。</p>
-<p><strong>强制安装</strong></p>
-<p>首先到官网下载到Centos 版本的安装包，然后强制安装 rpm 安装包。</p>
-<pre tabindex="0"><code>rpm -ivh --force --no-deps 
-</code></pre><p><strong>修改脚本</strong></p>
-<p>需要手动为 /usr/local/sunlogin/rpminstall.sh 文件和 /usr/local/sunlogin/scripts/start.sh 文件中共三处对 os_name 的判断加上 fedora，即 <code>if [ $os_name == 'centos' ] || [ &quot;$(echo $os_name |grep redhat)&quot; != &quot;&quot; ]</code> 替换为 <code>if [ $os_name == 'centos' ] || [ &quot;$os_name&quot; == &quot;fedora&quot; ] || [ &quot;$(echo $os_name |grep redhat)&quot; != &quot;&quot; ]</code>。</p>
-<pre tabindex="0"><code>sudo nano /usr/local/sunlogin/rpminstall.sh
-sudo nano /usr/local/sunlogin/scripts/start.shshshshshshshshshshshshshshshshshshshshshshshshshshshshshshshshshshshsh
-sudo nano /usr/local/sunlogin/scripts/common.sh
-</code></pre><p>然后编辑 /usr/local/sunlogin/scripts/common.sh 文件添加对 Fedora 的适配代码。</p>
-<pre tabindex="0"><code>elif [ $os_name == &#39;fedora&#39; ]; then
-        os_version=`cat /etc/fedora-release | cut -d &#39; &#39; -f3`
-</code></pre><p><img alt="image-20241128164412203" loading="lazy" src="/img/image-20241128164412203.png"></p>
-<p><strong>运行启动</strong></p>
-<p>首先执行之前强制安装未执行成功的安装脚本，执行完成之后就可以在桌面看到向日葵应用的图标了，也能正常启动使用。</p>
-<pre tabindex="0"><code>cd /usr/local/sunlogin
-sudo bash ./rpminstall.sh
-</code></pre><p><img alt="image-20241128165511344" loading="lazy" src="/img/image-20241128165511344.png"></p>
-]]></content:encoded>
+      <description>&lt;p&gt;虽然又很多开源远程控制软件（如 RustDesk），但是在服务业你无法强迫其他用户和你使用同样的软件，最终还是用户用什么你用什么。所以这篇文章记录一下在 Ferora 41 系统上向日葵远程控制和 ToDesk 的安装方法。安装&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;ToDesk&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;官网可以直接下载到 Linux 版本的安装包。&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo yum install libappindicator-gtk3&#xA;sudo yum install ./todesk-v4.7.2.0-x86_64.rpm&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://blog.mofeng.run/img/image-20241128162806739.png&#34; alt=&#34;image-20241128162806739&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;向日葵远程控制&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;官网只能下载到 Centos 版本的安装包，并不兼容 Fedora，需要一些额外的操作才可以正常使用。&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;强制安装&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;首先到官网下载到Centos 版本的安装包，然后强制安装 rpm 安装包。&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;rpm -ivh --force --no-deps &#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;修改脚本&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;需要手动为 /usr/local/sunlogin/rpminstall.sh 文件和 /usr/local/sunlogin/scripts/start.sh 文件中共三处对 os_name 的判断加上 fedora，即 &lt;code&gt;if [ $os_name == &#39;centos&#39; ] || [ &amp;quot;$(echo $os_name |grep redhat)&amp;quot; != &amp;quot;&amp;quot; ]&lt;/code&gt; 替换为 &lt;code&gt;if [ $os_name == &#39;centos&#39; ] || [ &amp;quot;$os_name&amp;quot; == &amp;quot;fedora&amp;quot; ] || [ &amp;quot;$(echo $os_name |grep redhat)&amp;quot; != &amp;quot;&amp;quot; ]&lt;/code&gt;。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linux 下进行 SQL Server 课程实验</title>
       <link>https://blog.mofeng.run/posts/use_fedora_linux_do_schoolwork/</link>
       <pubDate>Thu, 12 Dec 2024 12:24:53 +0000</pubDate>
       <guid>https://blog.mofeng.run/posts/use_fedora_linux_do_schoolwork/</guid>
-      <description>&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
-&lt;p&gt;作者最近安装了 Fedora 41 系统，体验一番后发现现在的 Linux 桌面生态比此前好了非常多，比如微信也有官方的 Linux 版本可用了。&lt;/p&gt;
-&lt;p&gt;于是想尝试将日常需求（比如计算机课程作业）迁移到 Fedora 41 试试看看能不能满足。这篇文章是将《数据库原理及应用》的 SQL Server 实验迁移到 Linux 平台上的实际体验。&lt;/p&gt;
-&lt;h3 id=&#34;安装-sql-server&#34;&gt;安装 SQL Server&lt;/h3&gt;
-&lt;p&gt;这里使用 Docker 容器方式一键部署，非常顺利。&lt;/p&gt;
-&lt;p&gt;微软官方教程：https://learn.microsoft.com/zh-cn/sql/linux/quickstart-install-connect-docker?view=sql-server-ver16&amp;amp;tabs=cli&amp;amp;pivots=cs1-bash&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#新建 SQL Server dcoker 实例&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;ACCEPT_EULA=Y&amp;#34;&lt;/span&gt; -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;MSSQL_SA_PASSWORD=&amp;lt;YourStrong@Passw0rd&amp;gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   -p 1433:1433 --name sql1 --hostname sql1 &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   -d &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   mcr.microsoft.com/mssql/server:2022-latest
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;连接-sql-server&#34;&gt;连接 SQL Server&lt;/h3&gt;
-&lt;p&gt;可以使用 &lt;code&gt;navicat17-premium-lite&lt;/code&gt; 免费软件连接数据库。这个软件为 Linux 发行版提供了 AppImage  可执行文件，界面比较美观，也能够在 Linux 上流畅稳定地运行。&lt;/p&gt;
-&lt;p&gt;首先新新建 SQL Server 连接，使用本地地址 127.0.0.1，用户名为 sa，密码为 &lt;a href=&#34;mailto:YourStrong@Passw0rd&#34;&gt;YourStrong@Passw0rd&lt;/a&gt;，然后就可以连接刚才部署的 SQL Server 数据库实例了。&lt;/p&gt;
-&lt;p&gt;新建 SQL 查询，返回服务器上所有数据库的名称：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sys&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;databases&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt=&#34;image-20241126214519167&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/image-20241126214519167.png&#34;&gt;&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<h3 id="前言">前言</h3>
-<p>作者最近安装了 Fedora 41 系统，体验一番后发现现在的 Linux 桌面生态比此前好了非常多，比如微信也有官方的 Linux 版本可用了。</p>
-<p>于是想尝试将日常需求（比如计算机课程作业）迁移到 Fedora 41 试试看看能不能满足。这篇文章是将《数据库原理及应用》的 SQL Server 实验迁移到 Linux 平台上的实际体验。</p>
-<h3 id="安装-sql-server">安装 SQL Server</h3>
-<p>这里使用 Docker 容器方式一键部署，非常顺利。</p>
-<p>微软官方教程：https://learn.microsoft.com/zh-cn/sql/linux/quickstart-install-connect-docker?view=sql-server-ver16&amp;tabs=cli&amp;pivots=cs1-bash</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#新建 SQL Server dcoker 实例</span>
-</span></span><span class="line"><span class="cl">docker run -e <span class="s2">&#34;ACCEPT_EULA=Y&#34;</span> -e <span class="s2">&#34;MSSQL_SA_PASSWORD=&lt;YourStrong@Passw0rd&gt;&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>   -p 1433:1433 --name sql1 --hostname sql1 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>   -d <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>   mcr.microsoft.com/mssql/server:2022-latest
-</span></span></code></pre></div><h3 id="连接-sql-server">连接 SQL Server</h3>
-<p>可以使用 <code>navicat17-premium-lite</code> 免费软件连接数据库。这个软件为 Linux 发行版提供了 AppImage  可执行文件，界面比较美观，也能够在 Linux 上流畅稳定地运行。</p>
-<p>首先新新建 SQL Server 连接，使用本地地址 127.0.0.1，用户名为 sa，密码为 <a href="mailto:YourStrong@Passw0rd">YourStrong@Passw0rd</a>，然后就可以连接刚才部署的 SQL Server 数据库实例了。</p>
-<p>新建 SQL 查询，返回服务器上所有数据库的名称：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">databases</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><p><img alt="image-20241126214519167" loading="lazy" src="/img/image-20241126214519167.png"></p>
-<h3 id="导入课程实验数据库">导入课程实验数据库</h3>
-<p>通常课程实验教师都会提供提前准备好的数据文件进行操作，因此需要手动附加数据库文件，这里是 Linux 附加使用数据的命令。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#将课程需要的数据库文件传入容器内部</span>
-</span></span><span class="line"><span class="cl">sudo docker <span class="nb">exec</span> -it --user root sql1  mkdir /data
-</span></span><span class="line"><span class="cl">sudo docker cp student_info.mdf  sql1:/data
-</span></span><span class="line"><span class="cl">sudo docker cp student_info_log.ldf  sql1:/data
-</span></span><span class="line"><span class="cl">sudo docker <span class="nb">exec</span> -it --user root sql1  chmod -R <span class="m">777</span>  /data
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 手动附加数据库
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">EXEC</span><span class="w"> </span><span class="n">sp_attach_db</span><span class="w"> </span><span class="o">@</span><span class="n">dbname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;student_info&#39;</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">@</span><span class="n">filename1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/data/student_info.mdf&#39;</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">@</span><span class="n">filename2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/data/student_info_log.ldf&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 使用数据库
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">USE</span><span class="w"> </span><span class="n">student_info</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 查询数据库内所有表名
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">SELECT</span><span class="w"> </span><span class="k">TABLE_NAME</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">INFORMATION_SCHEMA</span><span class="p">.</span><span class="n">TABLES</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">TABLE_TYPE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BASE TABLE&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 查询指定数据表内容
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">USE</span><span class="w"> </span><span class="n">student_info</span><span class="w">
-</span></span></span></code></pre></div><p><img alt="image-20241126220437464" loading="lazy" src="/img/image-20241126220437464.png">
-<img alt="image-20241126220437464" loading="lazy" src="/img/image-20241126233947205.png"></p>
-<h3 id="实验报告">实验报告</h3>
-<p>课程实验当然需要撰写实验报告了，这里使用 PlayOnLinux 安装的 Microsoft Office 2016 进行编辑也没有什么问题。</p>
-<p><img alt="image-20241126222641133" loading="lazy" src="/img/image-20241126222641133.png"></p>
-]]></content:encoded>
+      <description>&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;&#xA;&lt;p&gt;作者最近安装了 Fedora 41 系统，体验一番后发现现在的 Linux 桌面生态比此前好了非常多，比如微信也有官方的 Linux 版本可用了。&lt;/p&gt;&#xA;&lt;p&gt;于是想尝试将日常需求（比如计算机课程作业）迁移到 Fedora 41 试试看看能不能满足。这篇文章是将《数据库原理及应用》的 SQL Server 实验迁移到 Linux 平台上的实际体验。&lt;/p&gt;&#xA;&lt;h3 id=&#34;安装-sql-server&#34;&gt;安装 SQL Server&lt;/h3&gt;&#xA;&lt;p&gt;这里使用 Docker 容器方式一键部署，非常顺利。&lt;/p&gt;&#xA;&lt;p&gt;微软官方教程：https://learn.microsoft.com/zh-cn/sql/linux/quickstart-install-connect-docker?view=sql-server-ver16&amp;amp;tabs=cli&amp;amp;pivots=cs1-bash&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#新建 SQL Server dcoker 实例&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;ACCEPT_EULA=Y&amp;#34;&lt;/span&gt; -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;MSSQL_SA_PASSWORD=&amp;lt;YourStrong@Passw0rd&amp;gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   -p 1433:1433 --name sql1 --hostname sql1 &lt;span class=&#34;se&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   -d &lt;span class=&#34;se&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   mcr.microsoft.com/mssql/server:2022-latest&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;连接-sql-server&#34;&gt;连接 SQL Server&lt;/h3&gt;&#xA;&lt;p&gt;可以使用 &lt;code&gt;navicat17-premium-lite&lt;/code&gt; 免费软件连接数据库。这个软件为 Linux 发行版提供了 AppImage  可执行文件，界面比较美观，也能够在 Linux 上流畅稳定地运行。&lt;/p&gt;&#xA;&lt;p&gt;首先新新建 SQL Server 连接，使用本地地址 127.0.0.1，用户名为 sa，密码为 &lt;a href=&#34;mailto:YourStrong@Passw0rd&#34;&gt;YourStrong@Passw0rd&lt;/a&gt;，然后就可以连接刚才部署的 SQL Server 数据库实例了。&lt;/p&gt;&#xA;&lt;p&gt;新建 SQL 查询，返回服务器上所有数据库的名称：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sys&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;databases&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://blog.mofeng.run/img/image-20241126214519167.png&#34; alt=&#34;image-20241126214519167&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Ferora 41 日常使用和常用软件安装</title>
       <link>https://blog.mofeng.run/posts/use_fedora_linux/</link>
       <pubDate>Thu, 12 Dec 2024 12:08:35 +0000</pubDate>
       <guid>https://blog.mofeng.run/posts/use_fedora_linux/</guid>
-      <description>&lt;p&gt;心血来潮（&lt;del&gt;闲来无事&lt;/del&gt;），为自己的电脑安装了 Ferora 41 系统并在日常学习和生活中使用。个人认为 Ferora 是一个非常精致和稳定的系统，这个使用过程几乎没出现什么问题和错误。&lt;/p&gt;
-&lt;p&gt;这里记录一下 Ferora 41 系统上的相关软件使用。&lt;/p&gt;
-&lt;h3 id=&#34;常用软件安装&#34;&gt;常用软件安装&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Gnome 扩展&lt;/strong&gt;&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo yum install gnome-tweak-tool
-sudo yum install gnome-extensions-app
-sudo yum install gnome-shell-extension-dash-to-dock
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里推荐两个扩展，Dash to Dock （应用 Dock 栏）和 Tray Icons: Reloaded （应用托盘）。&lt;/p&gt;
-&lt;p&gt;如果不安装 Tray Icons: Reloaded 应用托盘扩展，QQ 等应用关闭后会一直在在后台运行，再次打开无法在打开此前界面而是打开新实例，只能 &lt;code&gt;killall qq&lt;/code&gt; 强制关闭全部后台。&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;image-20241124163719813&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/image-20241124163719813.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;QQ 和微信：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;QQ 和微信官网都有提供 rpm 下载，直接安装即可。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo yum install ./QQ_3.2.13_241121_x86_64_01.rpm
-sudo yum install ./WeChatLinux_x86_64.rpm
-#修复微信依赖库找不到的报错
-sudo ln -s /usr/lib64/libbz2.so.1 /usr/lib64/libbz2.so.1.0
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img alt=&#34;image-20241124170219161&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/image-20241124170219161.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Microsoft Office 2016&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;通过 PlayOnLinux 安装，但是不能使用 PlayOnLinux 自带的安装策略（我没成功），得按照下面这个视频教程操作。&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<p>心血来潮（<del>闲来无事</del>），为自己的电脑安装了 Ferora 41 系统并在日常学习和生活中使用。个人认为 Ferora 是一个非常精致和稳定的系统，这个使用过程几乎没出现什么问题和错误。</p>
-<p>这里记录一下 Ferora 41 系统上的相关软件使用。</p>
-<h3 id="常用软件安装">常用软件安装</h3>
-<p><strong>Gnome 扩展</strong></p>
-<pre tabindex="0"><code>sudo yum install gnome-tweak-tool
-sudo yum install gnome-extensions-app
-sudo yum install gnome-shell-extension-dash-to-dock
-</code></pre><p>这里推荐两个扩展，Dash to Dock （应用 Dock 栏）和 Tray Icons: Reloaded （应用托盘）。</p>
-<p>如果不安装 Tray Icons: Reloaded 应用托盘扩展，QQ 等应用关闭后会一直在在后台运行，再次打开无法在打开此前界面而是打开新实例，只能 <code>killall qq</code> 强制关闭全部后台。</p>
-<p><img alt="image-20241124163719813" loading="lazy" src="/img/image-20241124163719813.png"></p>
-<p><strong>QQ 和微信：</strong></p>
-<p>QQ 和微信官网都有提供 rpm 下载，直接安装即可。</p>
-<pre tabindex="0"><code>sudo yum install ./QQ_3.2.13_241121_x86_64_01.rpm
-sudo yum install ./WeChatLinux_x86_64.rpm
-#修复微信依赖库找不到的报错
-sudo ln -s /usr/lib64/libbz2.so.1 /usr/lib64/libbz2.so.1.0
-</code></pre><p><img alt="image-20241124170219161" loading="lazy" src="/img/image-20241124170219161.png"></p>
-<p><strong>Microsoft Office 2016</strong></p>
-<p>通过 PlayOnLinux 安装，但是不能使用 PlayOnLinux 自带的安装策略（我没成功），得按照下面这个视频教程操作。</p>
-<p>我参照的视频教程（感谢这位大佬的的分享）：<a href="https://www.bilibili.com/video/BV1Ey4y1e7Zf/">https://www.bilibili.com/video/BV1Ey4y1e7Zf/</a></p>
-<p><img alt="image-2024-11-24 15-20-15" loading="lazy" src="/img/image-20241124152015.png"></p>
-<p><strong>安装 Appimage 应用（以 QQ 音乐为例）</strong></p>
-<p>闪退解决解决办法: 增加参数 <code>--no-sandbox</code> 打开</p>
-<p>文字显示方块解决办法: 手动安装 <code>google-noto-sans-cjk-fonts</code> 和 <code>google-noto-serif-cjk-fonts</code></p>
-<p>在命令行运行成功之后，可以在 <code>/usr/share/applications</code> 目录添加桌面图标。</p>
-<p>QQ 音乐</p>
-<pre tabindex="0"><code>[Desktop Entry]
-Name=qqmusic
-Exec=/home/mofeng/app/qqmusic-1.1.7.AppImage --no-sandbox %U
-Terminal=false
-Type=Application
-Icon=/home/mofeng/app/qqmusic.png
-StartupWMClass=qqmusic
-X-AppImage-Version=1.1.7
-Comment=Tencent QQMusic
-Categories=AudioVideo;
-</code></pre><p><strong>Bilibili</strong></p>
-<p>Bambu_Studio</p>
-<pre tabindex="0"><code>#Bambu_Studio_linux_fedora-v01.10.00.89.AppImage 需要手动安装 webkit2gtk4.0-devel 依赖才能运行
-sudo yum install webkit2gtk4.0-devel
-</code></pre><pre tabindex="0"><code>[Desktop Entry]
-Name=BambuStudio
-Exec=/home/mofeng/app/Bambu_Studio_linux_fedora-v01.10.00.89.AppImage %F
-Icon=/home/mofeng/app/BambuStudio.png
-Type=Application
-Categories=Utility;
-MimeType=model/stl;application/vnd.ms-3mfdocument;application/prs.wavefront-obj;application/x-amf;
-</code></pre><p><img alt="image-20241124170401962" loading="lazy" src="/img/image-20241124170401962.png"></p>
-<p><img alt="image-20241124213144830" loading="lazy" src="/img/image-20241124213144830.png"></p>
-<p><strong>PlayOnLinux</strong></p>
-<p>安装运行 EXE 应用的工具。</p>
-<pre tabindex="0"><code>sudo yum install redhat-lsb redhat-lsb-core
-sudo dnf install playonlinux mono
-</code></pre><p><strong>开发工具</strong></p>
-<p>Edge 浏览器、Vscode 编辑器、Xdm 多线程下载工具在其官网都有提供 rpm 包下载，直接安装即可。</p>
-<pre tabindex="0"><code>#Edge 浏览器
-sudo yum install ./microsoft-edge-stable-131.0.2903.63-1.x86_64.rpm
-#Vscode 编辑器
-sudo yum install ./code-1.95.3-1731513157.el8.x86_64.rpm
-#Xdm 多线程下载工具
-sudo yum install ./xdman_gtk-8.0.25-1.fc36.x86_64.rpm
-#balenaEtcher 固件烧录工具
-sudo yum install ./balena-etcher-1.19.25-1.x86_64.rpm
-</code></pre><p><img alt="image-20241124165556092" loading="lazy" src="/img/image-20241124165556092.png"></p>
-<p><strong>PuTTY</strong></p>
-<pre tabindex="0"><code>sudo dnf install putty
-</code></pre><p><img alt="image-20241124214250562" loading="lazy" src="/img/image-20241124214250562.png"></p>
-<p><strong>Flameshot 截图工具</strong></p>
-<p>Linux 下非常好用的截图工具，功能很全。</p>
-<pre tabindex="0"><code>sudo dnf install flameshot
-</code></pre><p><strong>Blender</strong></p>
-<p>全平台 2D/3D 建模工具。</p>
-<pre tabindex="0"><code>sudo dnf install blender
-</code></pre><p><img alt="image-20241124213433798" loading="lazy" src="/img/image-20241124213433798.png"></p>
-<p><strong>Typora</strong></p>
-<p>非常好用的 MarkDown 文本编辑器，可以在官网下载 Linux 可执行文件压缩包，在新建个桌面图标。</p>
-<pre tabindex="0"><code>[Desktop Entry]
-Name=typora
-Exec=/home/mofeng/app/Typora-linux-x64/bin/Typora-linux-x64/Typora
-Comment=The Next Document processor based on Markdown
-Icon=/home/mofeng/app/Typora-linux-x64/bin/Typora-linux-x64/resources/assets/icon/icon_512x512.png
-Type=Application
-Terminal=false
-StartupNotify=true
-Encoding=UTF-8
-Categories=Development;GTK;GNOME;
-</code></pre><p><img alt="image-20241124213546956" loading="lazy" src="/img/image-20241124213546956.png"></p>
-<p><strong>GIMP</strong></p>
-<p>Linux 下的开源图像编辑工具。</p>
-<pre tabindex="0"><code>sudo dnf install gimp
-</code></pre><p><img alt="image-20241124213757845" loading="lazy" src="/img/image-20241124213757845.png"></p>
-]]></content:encoded>
+      <description>&lt;p&gt;心血来潮（&lt;del&gt;闲来无事&lt;/del&gt;），为自己的电脑安装了 Ferora 41 系统并在日常学习和生活中使用。个人认为 Ferora 是一个非常精致和稳定的系统，这个使用过程几乎没出现什么问题和错误。&lt;/p&gt;&#xA;&lt;p&gt;这里记录一下 Ferora 41 系统上的相关软件使用。&lt;/p&gt;&#xA;&lt;h3 id=&#34;常用软件安装&#34;&gt;常用软件安装&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;Gnome 扩展&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo yum install gnome-tweak-tool&#xA;sudo yum install gnome-extensions-app&#xA;sudo yum install gnome-shell-extension-dash-to-dock&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里推荐两个扩展，Dash to Dock （应用 Dock 栏）和 Tray Icons: Reloaded （应用托盘）。&lt;/p&gt;&#xA;&lt;p&gt;如果不安装 Tray Icons: Reloaded 应用托盘扩展，QQ 等应用关闭后会一直在在后台运行，再次打开无法在打开此前界面而是打开新实例，只能 &lt;code&gt;killall qq&lt;/code&gt; 强制关闭全部后台。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://blog.mofeng.run/img/image-20241124163719813.png&#34; alt=&#34;image-20241124163719813&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;QQ 和微信：&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;QQ 和微信官网都有提供 rpm 下载，直接安装即可。&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo yum install ./QQ_3.2.13_241121_x86_64_01.rpm&#xA;sudo yum install ./WeChatLinux_x86_64.rpm&#xA;#修复微信依赖库找不到的报错&#xA;sudo ln -s /usr/lib64/libbz2.so.1 /usr/lib64/libbz2.so.1.0&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://blog.mofeng.run/img/image-20241124170219161.png&#34; alt=&#34;image-20241124170219161&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Microsoft Office 2016&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;通过 PlayOnLinux 安装，但是不能使用 PlayOnLinux 自带的安装策略（我没成功），得按照下面这个视频教程操作。&lt;/p&gt;</description>
     </item>
     <item>
       <title>回顾自己的博客历史</title>
       <link>https://blog.mofeng.run/posts/my_blog_history/</link>
       <pubDate>Sun, 17 Nov 2024 14:16:07 +0000</pubDate>
       <guid>https://blog.mofeng.run/posts/my_blog_history/</guid>
-      <description>&lt;p&gt;正式博客建站的时候没有再使用意义不明的二级域名，而是在腾讯云以非常低的首年入手了 mofeng.xyz 这个域名。当时正处于口罩时期，教学采用线上网课的方式进行，这给了我接触网络合理的理由，于是日夜沉迷于此。下图是2020年4月28日的博客截图和百度网站统计。&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;05_2020-04-28_DECD18E8&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/05_2020-04-28_DECD18E8.jpeg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;03_2020-04-28_B5F69B11&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/03_2020-04-28_B5F69B11.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;当时发现新大陆、与网友交流的兴奋仍记忆清晰。对我影响比较大的是寒枫所在的凤栖社区，虽然我只是透明人窥屏的存在，但还是我口罩时代一段难忘的记忆。&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;06_2020-04-28_C7C2E849&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/06_2020-04-28_C7C2E849.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;13_2020-03-31_3DB40746&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/13_2020-03-31_3DB40746.jpeg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;疫情的影响慢慢减退之后，回到学校上学之后就回归学习日常生活，这段时期的中心就在学习上了。一直到现在，自己的博客都在维护，程序主题换了一个又一个，网站搬家迁移一次又一次，文章确实越来越少了。&lt;/p&gt;
-&lt;p&gt;日后会在这个博客上多写一些文章，无关观众，作为自己网络表达和技术记录的一个小天地。&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<p>正式博客建站的时候没有再使用意义不明的二级域名，而是在腾讯云以非常低的首年入手了 mofeng.xyz 这个域名。当时正处于口罩时期，教学采用线上网课的方式进行，这给了我接触网络合理的理由，于是日夜沉迷于此。下图是2020年4月28日的博客截图和百度网站统计。</p>
-<p><img alt="05_2020-04-28_DECD18E8" loading="lazy" src="/img/05_2020-04-28_DECD18E8.jpeg"></p>
-<p><img alt="03_2020-04-28_B5F69B11" loading="lazy" src="/img/03_2020-04-28_B5F69B11.png"></p>
-<p>当时发现新大陆、与网友交流的兴奋仍记忆清晰。对我影响比较大的是寒枫所在的凤栖社区，虽然我只是透明人窥屏的存在，但还是我口罩时代一段难忘的记忆。</p>
-<p><img alt="06_2020-04-28_C7C2E849" loading="lazy" src="/img/06_2020-04-28_C7C2E849.png"></p>
-<p><img alt="13_2020-03-31_3DB40746" loading="lazy" src="/img/13_2020-03-31_3DB40746.jpeg"></p>
-<p>疫情的影响慢慢减退之后，回到学校上学之后就回归学习日常生活，这段时期的中心就在学习上了。一直到现在，自己的博客都在维护，程序主题换了一个又一个，网站搬家迁移一次又一次，文章确实越来越少了。</p>
-<p>日后会在这个博客上多写一些文章，无关观众，作为自己网络表达和技术记录的一个小天地。</p>
-]]></content:encoded>
+      <description>&lt;p&gt;正式博客建站的时候没有再使用意义不明的二级域名，而是在腾讯云以非常低的首年入手了 mofeng.xyz 这个域名。当时正处于口罩时期，教学采用线上网课的方式进行，这给了我接触网络合理的理由，于是日夜沉迷于此。下图是2020年4月28日的博客截图和百度网站统计。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://blog.mofeng.run/img/05_2020-04-28_DECD18E8.jpeg&#34; alt=&#34;05_2020-04-28_DECD18E8&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://blog.mofeng.run/img/03_2020-04-28_B5F69B11.png&#34; alt=&#34;03_2020-04-28_B5F69B11&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;当时发现新大陆、与网友交流的兴奋仍记忆清晰。对我影响比较大的是寒枫所在的凤栖社区，虽然我只是透明人窥屏的存在，但还是我口罩时代一段难忘的记忆。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://blog.mofeng.run/img/06_2020-04-28_C7C2E849.png&#34; alt=&#34;06_2020-04-28_C7C2E849&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://blog.mofeng.run/img/13_2020-03-31_3DB40746.jpeg&#34; alt=&#34;13_2020-03-31_3DB40746&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;疫情的影响慢慢减退之后，回到学校上学之后就回归学习日常生活，这段时期的中心就在学习上了。一直到现在，自己的博客都在维护，程序主题换了一个又一个，网站搬家迁移一次又一次，文章确实越来越少了。&lt;/p&gt;&#xA;&lt;p&gt;日后会在这个博客上多写一些文章，无关观众，作为自己网络表达和技术记录的一个小天地。&lt;/p&gt;</description>
     </item>
     <item>
       <title>博客重新开始</title>
       <link>https://blog.mofeng.run/posts/restart_blog/</link>
       <pubDate>Fri, 06 Sep 2024 00:00:00 +0800</pubDate>
       <guid>https://blog.mofeng.run/posts/restart_blog/</guid>
-      <description>&lt;h3 id=&#34;说明&#34;&gt;说明&lt;/h3&gt;
-&lt;p&gt;博客非常久没有更新了，所以最近干脆重新使用 hugo 重新搭建一个。&lt;/p&gt;
-&lt;p&gt;默风博客最早在2020年3月14日建站，使用 Typecho 博客程序，大约是高一时期，当时对计算机科学非常感兴趣，所以尝试自己建站，从共享虚拟主机空间到云服务器。高中时期受限于学识和技术水平，虽然课外时间不多还是尝试了非常多的新东西，文章大多是各类网站的搭建记录。到了大学时期，设备更好时间更自由，但几乎没怎么更新博客，大概是表达欲的减弱吧（&lt;del&gt;其实是懒&lt;/del&gt;）。&lt;/p&gt;
-&lt;p&gt;这里放一张互联网档案馆的截图以作纪念。
-&lt;img alt=&#34;alt text&#34; loading=&#34;lazy&#34; src=&#34;https://blog.mofeng.run/img/image24102201.png&#34;&gt;&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<h3 id="说明">说明</h3>
-<p>博客非常久没有更新了，所以最近干脆重新使用 hugo 重新搭建一个。</p>
-<p>默风博客最早在2020年3月14日建站，使用 Typecho 博客程序，大约是高一时期，当时对计算机科学非常感兴趣，所以尝试自己建站，从共享虚拟主机空间到云服务器。高中时期受限于学识和技术水平，虽然课外时间不多还是尝试了非常多的新东西，文章大多是各类网站的搭建记录。到了大学时期，设备更好时间更自由，但几乎没怎么更新博客，大概是表达欲的减弱吧（<del>其实是懒</del>）。</p>
-<p>这里放一张互联网档案馆的截图以作纪念。
-<img alt="alt text" loading="lazy" src="/img/image24102201.png"></p>
-]]></content:encoded>
+      <description>&lt;h3 id=&#34;说明&#34;&gt;说明&lt;/h3&gt;&#xA;&lt;p&gt;博客非常久没有更新了，所以最近干脆重新使用 hugo 重新搭建一个。&lt;/p&gt;&#xA;&lt;p&gt;默风博客最早在2020年3月14日建站，使用 Typecho 博客程序，大约是高一时期，当时对计算机科学非常感兴趣，所以尝试自己建站，从共享虚拟主机空间到云服务器。高中时期受限于学识和技术水平，虽然课外时间不多还是尝试了非常多的新东西，文章大多是各类网站的搭建记录。到了大学时期，设备更好时间更自由，但几乎没怎么更新博客，大概是表达欲的减弱吧（&lt;del&gt;其实是懒&lt;/del&gt;）。&lt;/p&gt;&#xA;&lt;p&gt;这里放一张互联网档案馆的截图以作纪念。&#xA;&lt;img src=&#34;https://blog.mofeng.run/img/image24102201.png&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
