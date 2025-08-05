@@ -14,16 +14,13 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: latest
           extended: true
-
-      - name: Clone Hugo Theme
-        run: git clone https://github.com/adityatelange/hugo-PaperMod themes/PaperMod --depth=1
 
       - name: Build 
         run: hugo
