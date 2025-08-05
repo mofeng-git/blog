@@ -2,6 +2,12 @@
 title = "Lenny's Newsletter 年度订阅新一轮可以领取的免费产品"
 date = 2025-08-01T14:58:08+08:00
 draft = false
+tags = [
+    "Lenny's Newsletter"
+]
+categories = [
+    "其他",
+]
 +++
  
 ### Lenny's Newsletter  新一轮大礼包活动
